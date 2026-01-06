@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Add Deadline - Smart Deadline Reminder{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>➕ Add New Deadline</h2>
+    
+    <form action="{{ url_for('add_deadline') }}" method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="e.g., Math Final Exam" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description (Optional)</label>
+            <textarea id="description" name="description" rows="3" placeholder="Add any additional details..."></textarea>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="due_date">Due Date & Time</label>
+                <input type="datetime-local" id="due_date" name="due_date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="deadline_type">Type</label>
+                <select id="deadline_type" name="deadline_type" required>
+                    <option value="exam">📝 Exam</option>
+                    <option value="assignment">📄 Assignment</option>
+                    <option value="project">💻 Project</option>
+                    <option value="quiz">❓ Quiz</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="reminder_hours">Remind me before</label>
+            <select id="reminder_hours" name="reminder_hours">
+                <option value="1">1 hour before</option>
+                <option value="3">3 hours before</option>
+                <option value="6">6 hours before</option>
+                <option value="12">12 hours before</option>
+                <option value="24" selected>1 day before</option>
+                <option value="48">2 days before</option>
+                <option value="72">3 days before</option>
+                <option value="168">1 week before</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add Deadline</button>
+    </form>
+</div>
+{% endblock %}

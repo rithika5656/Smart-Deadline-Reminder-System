@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - Smart Deadline Reminder{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>⚙️ Settings</h2>
+    
+    <form action="{{ url_for('settings') }}" method="POST">
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" value="{{ user.name if user else '' }}" placeholder="Enter your name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" value="{{ user.email if user else '' }}" placeholder="your.email@example.com" required>
+            <small style="color: #666;">Reminders will be sent to this email address.</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save Settings</button>
+    </form>
+</div>
+
+{% if user %}
+<div class="card">
+    <h2>📧 Test Email</h2>
+    <p>Send a test email to verify your email configuration is working.</p>
+    <br>
+    <form action="{{ url_for('test_email') }}" method="POST">
+        <button type="submit" class="btn btn-primary">Send Test Email</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}
